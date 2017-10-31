@@ -16,7 +16,7 @@ public class Contact implements Serializable{
 	/**
 	 * 
 	 */
-//	private static final long serialVersionUID = 3093294891008082652L;
+	private static final long serialVersionUID = 3093294891008082652L;
 	
 	@Id @GeneratedValue
 	private Long id;
