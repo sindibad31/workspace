@@ -1,6 +1,7 @@
 import { ContactsService } from '../../services/contacts.service';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 import "rxjs/add/operator/map";
 
 @Component({
@@ -15,12 +16,12 @@ export class ContactsComponent implements OnInit {
   size:number=5;
   pages:Array<number>;
   
-  constructor(public http:Http, public contactService:ContactsService) { 
+  constructor(public http:Http, public contactService:ContactsService, public router:Router) { 
   
   }
 
   ngOnInit() {
-//    this.doSearch();
+    this.doSearch();
   }
   
   doSearch() {
@@ -43,4 +44,7 @@ export class ContactsComponent implements OnInit {
     this.doSearch();
   }
   
+  onEditContact(id:number) {
+    this.router.navigate(['editContact', id]);
+  }
 }

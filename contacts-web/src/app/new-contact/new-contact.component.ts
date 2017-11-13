@@ -1,4 +1,5 @@
 import { Contact } from '../../model/model.contact';
+import { ContactsService } from '../../services/contacts.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,15 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-contact.component.css']
 })
 export class NewContactComponent implements OnInit {
+  mode=1;
   contact:Contact=new Contact();
 
-  constructor() { }
+  constructor(public contactService:ContactsService) { }
 
   ngOnInit() {
   }
   
   saveContact() {
-    console.log(this.contact);
+    this.contactService.saveContact(this.contact)
+      .subscribe(data=> {
+        this.contact=data;
+        this.mode=2;
+      }, err=> {
+        console.log(err);
+      })
   }
 
 }
