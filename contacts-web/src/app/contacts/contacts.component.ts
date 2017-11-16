@@ -1,3 +1,4 @@
+import { Contact } from '../../model/model.contact';
 import { ContactsService } from '../../services/contacts.service';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
@@ -17,7 +18,6 @@ export class ContactsComponent implements OnInit {
   pages:Array<number>;
   
   constructor(public http:Http, public contactService:ContactsService, public router:Router) { 
-  
   }
 
   ngOnInit() {
@@ -25,14 +25,14 @@ export class ContactsComponent implements OnInit {
   }
   
   doSearch() {
-    this.contactService.getContacts(this.motCle, this.currentPage, this.size)
-      .subscribe(data => {
-        this.pageContacts=data;
-        this.pages = new Array(data.totalPages);
-      }, err => {
-        console.log(err);
-      }
-      )
+    this.contactService.getContacts(this.motCle, this.currentPage, this.size);
+//      .subscribe(data => {
+//        this.pageContacts=data;
+//        this.pages = new Array(data.totalPages);
+//      }, err => {
+//        console.log(err);
+//      }
+//      )
   }
   
   chercher() {
@@ -45,6 +45,20 @@ export class ContactsComponent implements OnInit {
   }
   
   onEditContact(id:number) {
-    this.router.navigate(['editContact', id]);
+    this.router.navigate(['/editContact', id]);
+  }
+   onDeleteContact(contact:Contact) {
+    let confirm=window.confirm("Etes vous sur de vouloir supprimer ce contact?");
+    if(confirm==true) {
+      this.contactService.deleteContact(contact.id)
+        .subscribe(data=> {
+          this.pageContacts.content.splice(
+            this.pageContacts.content.indexOf(contact),1
+          );  
+  //        this.doSearch();
+        }, err=> {
+          console.log(err);
+        })
+     }
   }
 }

@@ -17,7 +17,7 @@ const appRoutes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'contacts', component: ContactsComponent},
   {path: 'newContact', component: NewContactComponent},
-  {path: 'editContact/:id', component: EditContactComponent},  
+  {path: 'editContact/:id', component: EditContactComponent},
   {path: '', redirectTo: '/about', pathMatch: 'full'}
 ];
 
