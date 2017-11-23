@@ -1,0 +1,36 @@
+<div class="container spacer">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Gallery Component</div>
+    <div class="panel-body">
+      <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
+        <label>Mot Clé</label>
+        <input type="text" name="motCle" ngModel required>
+        <button type="submit" class="btn btn-primary">Chercher</button>
+      </form>
+      <!-- <div *ngIf="pagePhoto"></div> -->
+      <div *ngFor="let p of pagePhoto" class="col-md-4">
+        <div class="panel panel-primary cadre">
+          <div class="panel-heading">
+            <img class="avatar" src="{{p.userImageURL}}">
+            {{p.tags}}
+          </div>
+          <div class="panel-body">
+            <p>User :{{p.user}}</p>
+            <img src="{{p.previewURL}}" on>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <my-pagination
+        (goPage)="goToPage($event, f.value)"
+        (goNext)="onNext(f.value)"
+        (goPrev)="onPrev(f.value)"
+        [pagesToShow]="3"
+        [page]="page"
+        [perPage]="perPage"
+        [count]="total">
+      </my-pagination>
+    </div>
+  </div>
+</div>
