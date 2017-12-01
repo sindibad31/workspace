@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "./target/contacts-web",
       "assets": [
         "assets",
         "favicon.ico"
