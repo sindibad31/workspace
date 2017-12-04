@@ -16,7 +16,7 @@
   </form>
   <div class="ui grid posts">
     <app-article
-      *ngFor="let art of articles"
+      *ngFor="let art of sorteArticles()"
       [article]="art">
     </app-article>
   </div>

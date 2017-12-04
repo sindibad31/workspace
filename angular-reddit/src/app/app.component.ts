@@ -16,12 +16,15 @@ export class AppComponent {
     ];
   }
 
-
-
-  addArticle(title: string, link: string): boolean {
-
-    this.articles.push(new Article(title, link));
+  addArticle(title: HTMLInputElement, link: HTMLInputElement): boolean {
+    this.articles.push(new Article(title.value, link.value));
     console.log(this.articles);
+    title.value = '';
+    link.value = '';
     return false;
+  }
+
+  sorteArticles(): Article[] {
+    return this.articles.sort((a: Article, b: Article) => b.votes - a.votes);
   }
 }
